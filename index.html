@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Shadow Dump - Memory Forensics Challenge</title>
@@ -115,7 +116,7 @@
             color: #d1d5db;
         }
 
-        li + li {
+        li+li {
             margin-top: 4px;
         }
 
@@ -265,165 +266,164 @@
         }
     </style>
 </head>
+
 <body>
-<div class="page">
-    <header>
-        <div class="title">Shadow Dump</div>
-        <div class="subtitle">Memory Forensics CTF Challenge</div>
-        <div class="meta-badges">
-            <span class="badge badge--primary">Memory Forensics</span>
-            <span class="badge">Medium</span>
-        </div>
-    </header>
+    <div class="page">
+        <header>
+            <div class="title">Shadow Dump</div>
+            <div class="subtitle">Memory Forensics CTF Challenge</div>
+            <div class="meta-badges">
+                <span class="badge badge--primary">Memory Forensics</span>
+                <span class="badge">Medium</span>
+            </div>
+        </header>
 
-    <main>
-        <div>
-            <section>
-                <h2>Scenario</h2>
-                <p>
-                    FinTech Solutions’ SOC received an alert at <strong>03:47 AM</strong> for unusual database activity
-                    originating from workstation <strong>WKSTN-2847</strong>. The endpoint detection system flagged an
-                    interactive login and the execution of unfamiliar scripts outside normal business hours.
-                </p>
-                <p>
-                    Preliminary investigation revealed a Python process running with elevated privileges, attempting
-                    connections outside the infrastructure. The analyst contained the workstation and captured
-                    volatile memory before terminating the process. The forensic image is now with your team.
-                </p>
-                <p>
-                    You are the Incident Response Analyst. Your objective is to examine the memory dump and determine
-                    what credentials or sensitive data were accessed. Process configuration data, memory, and heap
-                    allocations may contain evidence of the intended exfiltration. Recover the complete secret
-                    credential string.
-                </p>
-            </section>
+        <main>
+            <div>
+                <section>
+                    <h2>Scenario</h2>
+                    <p>
+                        FinTech Solutions’ SOC received an alert at <strong>03:47 AM</strong> for unusual database
+                        activity
+                        originating from workstation <strong>WKSTN-2847</strong>. The endpoint detection system flagged
+                        an
+                        interactive login and the execution of unfamiliar scripts outside normal business hours.
+                    </p>
+                    <p>
+                        Preliminary investigation revealed a Python process running with elevated privileges, attempting
+                        connections outside the infrastructure. The analyst contained the workstation and captured
+                        volatile memory before terminating the process. The forensic image is now with your team.
+                    </p>
+                    <p>
+                        You are the Incident Response Analyst. Your objective is to examine the memory dump and
+                        determine
+                        what credentials or sensitive data were accessed. Process configuration data, memory, and heap
+                        allocations may contain evidence of the intended exfiltration. Recover the complete secret
+                        credential string.
+                    </p>
+                </section>
 
-            <section>
-                <h2>Learning Outcomes</h2>
-                <ul>
-                    <li>Volatile memory analysis using modern forensic frameworks.</li>
-                    <li>Locating and reconstructing data from process memory allocations.</li>
-                    <li>Identifying and decoding simple encoding used in memory artifacts.</li>
-                </ul>
-            </section>
+                <section>
+                    <h2>Learning Outcomes</h2>
+                    <ul>
+                        <li>Volatile memory analysis using modern forensic frameworks.</li>
+                        <li>Locating and reconstructing data from process memory allocations.</li>
+                        <li>Identifying and decoding simple encoding used in memory artifacts.</li>
+                    </ul>
+                </section>
 
-            <section>
-                <h2>Hints</h2>
-                <ul class="hint-list">
-                    <li>Python running on a finance workstation at 03:47 AM is a strong lead.</li>
-                    <li>Command line arguments often leak part of the attacker’s intent.</li>
-                    <li>Heap memory is a good place to hunt for runtime secrets and credentials.</li>
-                </ul>
-            </section>
-        </div>
+                <section>
+                    <h2>Hints</h2>
+                    <ul class="hint-list">
+                        <li>Python running on a finance workstation at 03:47 AM is a strong lead.</li>
+                        <li>Command line arguments often leak part of the attacker’s intent.</li>
+                        <li>Heap memory is a good place to hunt for runtime secrets and credentials.</li>
+                    </ul>
+                </section>
+            </div>
 
-        <!-- Right column: assets + flag submission -->
-        <div>
-            <section>
-                <h2>Challenge Info</h2>
-                <div class="label">Category</div>
-                <p>Memory Forensics / Incident Response</p>
+            <!-- Right column: assets + flag submission -->
+            <div>
+                <section>
+                    <h2>Challenge Info</h2>
+                    <div class="label">Category</div>
+                    <p>Memory Forensics</p>
 
-                <div class="label">Difficulty</div>
-                <p>Medium</p>
+                    <div class="label">Difficulty</div>
+                    <p>Medium</p>
 
-                <div class="label">Flag Format</div>
-                <span class="flag-format">CTF{...}</span>
-            </section>
+                    <div class="label">Flag Format</div>
+                    <span class="flag-format">CTF{...}</span>
+                </section>
 
-            <section>
-                <h2>Assets</h2>
-                <p class="label">Memory dump</p>
-                <div class="assets-list">
-                    <div class="asset-item">
-                        <div>
-                            <div><code>insider_incident.mem</code></div>
-                            <div class="asset-meta">Windows 10 x64 memory image · ~4 GB</div>
+                <section>
+                    <h2>Assets</h2>
+                    <p class="label">Memory dump</p>
+                    <div class="assets-list">
+                        <div class="asset-item">
+                            <div>
+                                <div><code>memdump.mem</code></div>
+                                <div class="asset-meta">Windows 10 x64 Dump ~1 GB</div>
+                            </div>
+                            <a class="btn btn--primary"
+                                href="https://github.com/5h1Vm/memdmp-chal/raw/refs/heads/main/memdump.mem?download="
+                                download>
+                                Download
+                            </a>
                         </div>
-                        <a
-                            class="btn btn--primary"
-                            href="https://github.com/5h1Vm/memdmp-chal/raw/refs/heads/main/memdump.mem?download="
-                            download
-                        >
-                            ⬇ Download
-                        </a>
                     </div>
-                </div>
-                <p class="asset-meta" style="margin-top:8px;">
-                </p>
-            </section>
+                    <p class="asset-meta" style="margin-top:8px;">
+                    </p>
+                </section>
 
-            <section>
-                <h2>Submit Flag (Local Check)</h2>
-                <p style="font-size:0.9rem; color:#9ca3af; margin-bottom:6px;">
-                    Client-side check for practice only. For a real CTF platform, use a server-side validator.
-                </p>
+                <section>
+                    <h2>Submit Flag (Local Check)</h2>
+                    <p style="font-size:0.9rem; color:#9ca3af; margin-bottom:6px;">
+                        Client-side check for practice only. For a real CTF platform, use a server-side validator.
+                    </p>
 
-                <form class="flag-form" onsubmit="return false;">
-                    <div class="flag-input-row">
-                        <input
-                            id="flag-input"
-                            class="flag-input"
-                            type="text"
-                            placeholder="Enter flag, e.g. CTF{...}"
-                            autocomplete="off"
-                        />
-                        <button type="button" class="btn btn--ghost" onclick="checkFlag()">
-                            Submit
-                        </button>
-                    </div>
-                    <div id="flag-status" class="flag-status"></div>
-                </form>
-            </section>
-        </div>
-    </main>
+                    <form class="flag-form" onsubmit="return false;">
+                        <div class="flag-input-row">
+                            <input id="flag-input" class="flag-input" type="text"
+                                placeholder="Enter flag, e.g. CTF{...}" autocomplete="off" />
+                            <button type="button" class="btn btn--ghost" onclick="checkFlag()">
+                                Submit
+                            </button>
+                        </div>
+                        <div id="flag-status" class="flag-status"></div>
+                    </form>
+                </section>
+            </div>
+        </main>
+        <center>
+            <footer>
+                <div>GitHub: <a href="https://github.com/5h1Vm/memdmp-chal">5h1Vm/memdmp-chal</a></div>
+                <div>For educational and training use.</div>
+            </footer>
+        </center>
+    </div>
 
-    <footer>
-        <div>GitHub Repository: <a href="https://github.com/5h1Vm/memdmp-chal">5h1Vm/memdmp-chal</a></div>
-        <div>For educational and training use.</div>
-    </footer>
-</div>
+    <script>
+        const EXPECTED_FLAG_SHA256 = "e1cd6ecc04ed162332ba929b1f7b079ec46a01159290d5098f82e99ecd81dd51";
 
-<script>
-    const EXPECTED_FLAG_SHA256 = "e1cd6ecc04ed162332ba929b1f7b079ec46a01159290d5098f82e99ecd81dd51";
-
-    async function sha256Hex(input) {
-        const encoder = new TextEncoder();
-        const data = encoder.encode(input);
-        const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-        const hashArray = Array.from(new Uint8Array(hashBuffer));
-        return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
-    }
-
-    async function checkFlag() {
-        const inputEl = document.getElementById("flag-input");
-        const statusEl = document.getElementById("flag-status");
-        const flag = (inputEl.value || "").trim();
-
-        statusEl.textContent = "";
-        statusEl.classList.remove("flag-status--ok", "flag-status--err");
-
-        if (!flag) {
-            statusEl.textContent = "Enter a flag first.";
-            statusEl.classList.add("flag-status--err");
-            return;
+        async function sha256Hex(input) {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(input);
+            const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
         }
 
-        try {
-            const hash = await sha256Hex(flag);
+        async function checkFlag() {
+            const inputEl = document.getElementById("flag-input");
+            const statusEl = document.getElementById("flag-status");
+            const flag = (inputEl.value || "").trim();
 
-            if (hash === EXPECTED_FLAG_SHA256) {
-                statusEl.textContent = "Correct flag. Nice work.";
-                statusEl.classList.add("flag-status--ok");
-            } else {
-                statusEl.textContent = "Incorrect flag. Keep digging in memory.";
+            statusEl.textContent = "";
+            statusEl.classList.remove("flag-status--ok", "flag-status--err");
+
+            if (!flag) {
+                statusEl.textContent = "Enter a flag first.";
+                statusEl.classList.add("flag-status--err");
+                return;
+            }
+
+            try {
+                const hash = await sha256Hex(flag);
+
+                if (hash === EXPECTED_FLAG_SHA256) {
+                    statusEl.textContent = "Correct flag. Nice work.";
+                    statusEl.classList.add("flag-status--ok");
+                } else {
+                    statusEl.textContent = "Incorrect flag. Keep digging in memory.";
+                    statusEl.classList.add("flag-status--err");
+                }
+            } catch (e) {
+                statusEl.textContent = "Your browser does not support Web Crypto API.";
                 statusEl.classList.add("flag-status--err");
             }
-        } catch (e) {
-            statusEl.textContent = "Your browser does not support Web Crypto API.";
-            statusEl.classList.add("flag-status--err");
         }
-    }
-</script>
+    </script>
 </body>
+
 </html>
